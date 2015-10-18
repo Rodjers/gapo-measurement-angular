@@ -1,0 +1,24 @@
+<div class="container">
+  <table class="table table-striped">
+    <thead> 
+      <tr>
+        <td>#</td>
+        <td>Engineer</td>
+        <td>Customer</td>
+        <td>Height</td>
+        <td>Width</td>
+        <td>Depth</td> 
+      </tr>   
+    </thead>
+    <tbody>
+      <tr ng-repeat="measurement in measurements">
+        <td ng-bind="$index + 1"></td>
+        <td ng-bind="measurement.engineer"></td>
+        <td ng-bind="measurement.customer"></td>
+        <td ng-bind="measurement.height"></td>
+        <td ng-bind="measurement.width"></td>
+        <td ng-bind="measurement.depth"></td>
+      </tr>  
+    </tbody>
+  </table>
+</div>
