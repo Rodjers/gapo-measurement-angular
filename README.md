@@ -3,9 +3,15 @@
 ## Development
 
 1. Check out
-2. run 
-'''bash
+2. Run: 
+```bash
 npm install
-'''
-3. run bower install
-3. run grunt serve
+```
+3. Run:
+```bash
+bower install
+```
+4. Run:
+```bash
+grunt install
+```
