@@ -1,5 +1,11 @@
 # gapo-measurement-angular
 
+##Dependencies
+
+1. npm
+2. bower
+3. grunt
+
 ## Development
 
 1. Check out
