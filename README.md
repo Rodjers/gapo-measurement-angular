@@ -26,15 +26,15 @@ grunt install
 
 ### Custom Fields
 
-customfield_10302: Adresse
-customfield_10303: Postnummer
-customfield_10304: Poststed
-customfield_10305: Telefonnummer
-customfield_10306: Dybde
-customfield_10300: Overhøyde
-customfield_10301: Navn
-customfield_10011: Høyde
-customfield_10013: Bredde
-customfield_10014: Sideklaring Venstre
-customfield_10015: Sideklaring Høyde
-customfield_10308: Ansatt (JSON Object with id)
+* customfield_10302: Adresse
+* customfield_10303: Postnummer
+* customfield_10304: Poststed
+* customfield_10305: Telefonnummer
+* customfield_10306: Dybde
+* customfield_10300: Overhøyde
+* customfield_10301: Navn
+* customfield_10011: Høyde
+* customfield_10013: Bredde
+* customfield_10014: Sideklaring Venstre
+* customfield_10015: Sideklaring Høyde
+* customfield_10308: Ansatt (JSON Object with id)
