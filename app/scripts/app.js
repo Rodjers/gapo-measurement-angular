@@ -2,9 +2,10 @@
 
 angular.module	('gapoDummyBackendApp', [
   'ngRoute',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'base64'
 ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $sceDelegateProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -17,4 +18,5 @@ angular.module	('gapoDummyBackendApp', [
       .otherwise({
         redirectTo: '/'
       });
+      $sceDelegateProvider.resourceUrlWhitelist(['self', 'http://localhost:8000']);
   });
