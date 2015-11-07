@@ -35,6 +35,9 @@ angular.module('gapoMeasurementApp')
     },
     getMetaMeasurement: function() {
       return $http.get(restUrl + '/issue/GM-1/editmeta');
+    },
+    getMeasurements: function() {
+      return $http.get(restUrl + '/search?jql=issuetype=Garasjeport+and+status=Open');
     }
   }
 });

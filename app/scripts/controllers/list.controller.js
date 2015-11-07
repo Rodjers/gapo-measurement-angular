@@ -1,15 +1,13 @@
 'use strict';
 
 angular.module('gapoMeasurementApp')
-  .controller('ListCtrl', function ($scope, $http) {
+  .controller('ListCtrl', function($scope, $http, JiraRest) {
 
     $scope.measurements = [];
 
-    $scope.getMeasurements = function() {
-      $http.get('https://gapo-dummy-backend.herokuapp.com/api/measurements').success(function(data){
-        $scope.measurements = data;
-      })
-    }
+    JiraRest.getMeasurements().then(function(response) {
+      $scope.measurements = angular.copy(response.data.issues);
+    }, function(response) {
 
-    $scope.getMeasurements();
     });
+  });
