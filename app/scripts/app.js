@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module	('gapoDummyBackendApp', [
+angular.module	('gapoMeasurementApp', [
   'ngRoute',
   'ui.bootstrap',
   'base64'
@@ -18,5 +18,4 @@ angular.module	('gapoDummyBackendApp', [
       .otherwise({
         redirectTo: '/'
       });
-      $sceDelegateProvider.resourceUrlWhitelist(['self', 'http://localhost:8000']);
   });

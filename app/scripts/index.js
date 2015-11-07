@@ -8,7 +8,7 @@ var CordovaInit = function() {
 
 	var receivedEvent = function(event) {
 		console.log('Start event received, bootstrapping application setup.');
-		angular.bootstrap($('body'), ['gapoDummyBackendApp']);
+		angular.bootstrap($('body'), ['gapoMeasurementApp']);
 	};
 
 	this.bindEvents = function() {

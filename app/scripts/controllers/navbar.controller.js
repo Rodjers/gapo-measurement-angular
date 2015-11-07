@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('gapoDummyBackendApp')
+angular.module('gapoMeasurementApp')
   .controller('NavbarCtrl', function ($scope, $location) {
     $scope.menu = [{
       'title': 'Register',

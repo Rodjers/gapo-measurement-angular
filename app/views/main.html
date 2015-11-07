@@ -10,7 +10,7 @@
     <div class="col-lg-6">
     <div class="form-group">
     <label for="formEngineer">Ansatt</label>
-    <input type="text" class="form-control" id="formEngineer" ng-model="newIssue.fields.customfield_10308.id">
+    <select ng-options="employee.id as employee.value for employee in employees" class="form-control" id="formEngineer" ng-model="newIssue.fields.customfield_10308.id"></select>
   </div>
   <div class="form-group">
     <label for="formEngineer">Navn</label>
@@ -70,6 +70,6 @@
       <button type="submit" class="btn btn-default pull-right" ng-click="addMeasurement(newIssue)">Submit</button>
   </div>
   </ng-form>
-<button class="btn btn-default" ng-click="getPhoto()">Ta bilde</button>
+<button class="btn btn-default" ng-click="login('oddgeir','lyse1234')">Test</button>
 
 </div>

@@ -1,4 +1,4 @@
-angular.module('gapoDummyBackendApp').factory('Camera', ['$q', function($q) {
+angular.module('gapoMeasurementApp').factory('Camera', ['$q', function($q) {
 
   return {
     getPicture: function(options) {

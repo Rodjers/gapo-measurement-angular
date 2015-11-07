@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('gapoDummyBackendApp')
+angular.module('gapoMeasurementApp')
   .controller('ListCtrl', function ($scope, $http) {
 
     $scope.measurements = [];
