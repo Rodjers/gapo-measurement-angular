@@ -1,9 +1,12 @@
 'use strict';
 
 angular.module('gapoMeasurementApp')
-  .controller('MainCtrl', function($scope, $http, $base64, Camera, JiraRest) {
+  .controller('MainCtrl', function($scope, $http, $base64, Camera, JiraRest, $rootScope, UtilityService) {
 
-    if ($scope.currentIssue == undefined) {
+    if ($rootScope.rootMeasurement != undefined) {
+      $scope.currentIssue = angular.copy($rootScope.rootMeasurement);
+    }
+    else if ($scope.currentIssue == undefined) {
       init();
     }
 
@@ -18,28 +21,20 @@ angular.module('gapoMeasurementApp')
       JiraRest.getMetaMeasurement().then(function(response) {
         $scope.employees = angular.copy(response.data.fields.customfield_10308.allowedValues);
         JiraRest.getDefaultMeasurement().then(function(response) {
-          $scope.currentIssue.fields.customfield_10011 = angular.copy(response.data.fields.customfield_10011);
-          $scope.currentIssue.fields.customfield_10013 = angular.copy(response.data.fields.customfield_10013);
-          $scope.currentIssue.fields.customfield_10014 = angular.copy(response.data.fields.customfield_10011);
-          $scope.currentIssue.fields.customfield_10015 = angular.copy(response.data.fields.customfield_10011);
-          $scope.currentIssue.fields.customfield_10300 = angular.copy(response.data.fields.customfield_10300);
-          $scope.currentIssue.fields.customfield_10301 = angular.copy(response.data.fields.customfield_10301);
-          $scope.currentIssue.fields.customfield_10302 = angular.copy(response.data.fields.customfield_10302);
-          $scope.currentIssue.fields.customfield_10303 = angular.copy(response.data.fields.customfield_10303);
-          $scope.currentIssue.fields.customfield_10304 = angular.copy(response.data.fields.customfield_10304);
-          $scope.currentIssue.fields.customfield_10305 = angular.copy(response.data.fields.customfield_10305);
-          $scope.currentIssue.fields.customfield_10306 = angular.copy(response.data.fields.customfield_10306);
-          $scope.currentIssue.fields.customfield_10308 = angular.copy(response.data.fields.customfield_10308);
-          $scope.currentIssue.fields.summary = angular.copy(response.data.fields.summary);
+          $scope.currentIssue = UtilityService.trimIssue(response.data);
+          $scope.currentIssue.id = null;
+          $scope.currentIssue.key = null;
         }, function(response) {
           //Error
         });
-
-        console.log(response.data);
       }, function(response) {
         console.log("Could not get default measurement");
       });
     };
+
+    $scope.init = function() {
+      init();
+      }
 
     $scope.login = function(username, password) {
       JiraRest.login(username, password);
@@ -54,12 +49,21 @@ angular.module('gapoMeasurementApp')
     };
 
     $scope.addMeasurement = function(currentIssue) {
-      JiraRest.addMeasurement(currentIssue).then(function(data) {
-          $scope.currentIssue = {};
+      JiraRest.addMeasurement(currentIssue).then(function(response) {
+
+          $scope.currentIssue.id = response.data.id;
+          $scope.currentIssue.key = response.data.key;
         },
         function(data) {
           console.log(data);
           console.log("Fail");
         });
+    }
+    $scope.updateMeasurement = function(issue) {
+      JiraRest.updateMeasurement(issue).then(function(response) {
+        console.log(response);
+      }, function(response){
+        console.log(response);
+      });
     }
   });

@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('gapoMeasurementApp').factory('Camera', ['$q', function($q) {
 
   return {

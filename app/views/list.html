@@ -11,7 +11,7 @@
       </tr>   
     </thead>
     <tbody>
-      <tr ng-repeat="measurement in measurements">
+      <tr ng-click="chooseMeasurement($index)" ng-repeat="measurement in measurements">
         <td ng-bind="$index + 1"></td>
         <td ng-bind="measurement.fields.customfield_10301"></td>
         <td ng-bind="measurement.fields.customfield_10302"></td>

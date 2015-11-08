@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gapoMeasurementApp')
-  .controller('ListCtrl', function($scope, $http, JiraRest) {
+  .controller('ListCtrl', function($scope, $http, JiraRest, $location, $rootScope) {
 
     $scope.measurements = [];
 
@@ -10,4 +10,9 @@ angular.module('gapoMeasurementApp')
     }, function(response) {
 
     });
+
+    $scope.chooseMeasurement = function(index){
+    	$rootScope.rootMeasurement = angular.copy($scope.measurements[index]);
+    	$location.path('/');
+    }
   });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gapoMeasurementApp')
-  .service('JiraRest', function($http, $base64, $rootScope) {
+  .service('JiraRest', function($http, $base64, $rootScope, UtilityService) {
 
   $http.defaults.headers.common.Authorization = 'Basic ' + $base64.encode('oddgeir' + ':' + 'lyse1234');
 
@@ -38,6 +38,10 @@ angular.module('gapoMeasurementApp')
     },
     getMeasurements: function() {
       return $http.get(restUrl + '/search?jql=issuetype=Garasjeport+and+status=Open');
+    },
+    updateMeasurement: function(issue) {
+      var updateIssue = UtilityService.trimIssue(issue);
+      return $http.put(restUrl + '/issue/' + issue.id, updateIssue);
     }
   }
 });
