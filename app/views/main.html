@@ -1,5 +1,5 @@
 <div class="container">
-  <ng-form>
+  <ng-form name="measurementForm">
     <div class="row">
     <div class="col-lg-12">
           <h1 class="page-header">Mål</h1>
@@ -8,58 +8,65 @@
     <div class="row">
       <div class="col-lg-6">
       <div class="form-group">
-      <label for="formEngineer">Ansatt</label>
-      <select ng-options="employee.id as employee.value for employee in employees" class="form-control" id="formEngineer" ng-model="currentIssue.fields.customfield_10308.id"></select>
+      <label>Ansatt</label>
+      <select ng-options="employee.id as employee.value for employee in employees" class="form-control" name="formEmployee" ng-model="currentIssue.fields.customfield_10308.id"></select>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : measurementForm.formCustomer.$invalid && !measurementForm.formCustomer.$pristine }">
+      <label>Navn</label>
+      <input type="text" class="form-control" name="formCustomer" ng-model="currentIssue.fields.customfield_10301" required>
+      <p ng-show="measurementForm.formCustomer.$invalid && !measurementForm.formCustomer.$pristine" class="help-block">Fyll inn navn på kunde.</p>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : measurementForm.formAdress.$invalid && !measurementForm.formAdress.$pristine }">
+      <label>Adresse</label>
+      <input type="text" class="form-control" name="formAdress" ng-model="currentIssue.fields.customfield_10302" required>
+      <p ng-show="measurementForm.formAdress.$invalid && !measurementForm.formAdress.$pristine" class="help-block">Fyll adresse.</p>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : measurementForm.formZipcode.$invalid && !measurementForm.formZipcode.$pristine }">
+      <label>Postnummer</label>
+      <input type="number" class="form-control" name="formZipcode" ng-model="currentIssue.fields.customfield_10303" required ng-minlength="4" ng-maxlength="4">
+      <p ng-show="measurementForm.formZipcode.$error.minlength" class="help-block">Postnummer er for kort.</p>
+      <p ng-show="measurementForm.formZipcode.$error.maxlength" class="help-block">Postnummer er for langt.</p>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : measurementForm.formCity.$invalid && !measurementForm.formCity.$pristine }">
+      <label>Poststed</label>
+      <input type="text" class="form-control" name="formCity" ng-model="currentIssue.fields.customfield_10304" required>
+      <p ng-show="measurementForm.formCity.$invalid && !measurementForm.formCity.$pristine" class="help-block">Fyll inn poststed.</p>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : measurementForm.formPhonenumber.$invalid && !measurementForm.formPhonenumber.$pristine }">
+      <label>Telefonnr.</label>
+      <input type="number" class="form-control" name="formPhonenumber" ng-model="currentIssue.fields.customfield_10305" required ng-minlength="8" ng-maxlength="8">
+      <p ng-show="measurementForm.formPhonenumber.$error.minlength" class="help-block">Telefonnummer er for kort.</p>
+      <p ng-show="measurementForm.formPhonenumber.$error.maxlength" class="help-block">Telefonnummer er for langt.</p>
     </div>
     <div class="form-group">
-      <label for="formEngineer">Navn</label>
-      <input type="text" class="form-control" id="formEngineer" ng-model="currentIssue.fields.customfield_10301">
-    </div>
-    <div class="form-group">
-      <label for="formCustomer">Adresse</label>
-      <input type="text" class="form-control" id="formCustomer" ng-model="currentIssue.fields.customfield_10302">
-    </div>
-    <div class="form-group">
-      <label for="formHeight">Postnummer</label>
-      <input type="number" class="form-control" id="formHeight" ng-model="currentIssue.fields.customfield_10303">
-    </div>
-    <div class="form-group">
-      <label for="formHeight">Poststed</label>
-      <input type="text" class="form-control" id="formHeight" ng-model="currentIssue.fields.customfield_10304">
-    </div>
-    <div class="form-group">
-      <label for="formWidth">Telefonnr.</label>
-      <input type="number" class="form-control" id="formWidth" ng-model="currentIssue.fields.customfield_10305">
-    </div>
-    <div class="form-group">
-      <label for="formDepth">Sammendrag</label>
-      <input type="text" class="form-control" id="formDepth" ng-model="currentIssue.fields.summary">
+      <label>Sammendrag</label>
+      <input type="text" class="form-control" name="formDescription" ng-model="currentIssue.fields.summary">
     </div>
       </div>
       <div class="col-lg-6">
     <div class="form-group">
-      <label for="formEngineer">Høyde</label>
-      <input type="number" class="form-control" id="formEngineer" ng-model="currentIssue.fields.customfield_10011">
+      <label>Høyde</label>
+      <input type="number" class="form-control" name="formHeight" ng-model="currentIssue.fields.customfield_10011">
     </div>
     <div class="form-group">
-      <label for="formCustomer">Bredde</label>
-      <input type="number" class="form-control" id="formCustomer" ng-model="currentIssue.fields.customfield_10013">
+      <label>Bredde</label>
+      <input type="number" class="form-control" name="formWidth" ng-model="currentIssue.fields.customfield_10013">
     </div>
     <div class="form-group">
-      <label for="formHeight">Dybde</label>
-      <input type="number" class="form-control" id="formHeight" ng-model="currentIssue.fields.customfield_10306">
+      <label>Dybde</label>
+      <input type="number" class="form-control" name="formDepth" ng-model="currentIssue.fields.customfield_10306">
     </div>
     <div class="form-group">
-      <label for="formHeight">Overhøyde</label>
-      <input type="number" class="form-control" id="formHeight" ng-model="currentIssue.fields.customfield_10300">
+      <label>Overhøyde</label>
+      <input type="number" class="form-control" name="formOverHeight" ng-model="currentIssue.fields.customfield_10300">
     </div>
     <div class="form-group">
-      <label for="formHeight">Sideklaring høyre</label>
-      <input type="number" class="form-control" id="formHeight" ng-model="currentIssue.fields.customfield_10015">
+      <label>Sideklaring høyre</label>
+      <input type="number" class="form-control" name="formClearingRight" ng-model="currentIssue.fields.customfield_10015">
     </div>
     <div class="form-group">
-      <label for="formHeight">Sideklaring venstre</label>
-      <input type="number" class="form-control" id="formHeight" ng-model="currentIssue.fields.customfield_10014">
+      <label>Sideklaring venstre</label>
+      <input type="number" class="form-control" name="formClearingLeft" ng-model="currentIssue.fields.customfield_10014">
     </div>
       </div>
     </div>
@@ -67,8 +74,8 @@
       <div class="col-lg-12">
         <button class="btn btn-default" ng-click="init()">Reset</button>
         <button class="btn btn-default" ng-click="getPhoto()">Ta bilde</button>
-        <button ng-if="!currentIssue.id" type="submit" class="btn btn-primary" ng-click="addMeasurement(currentIssue)">Legg til</button>
-        <button ng-if="currentIssue.id" type="submit" class="btn btn-primary" ng-click="updateMeasurement(currentIssue)">Lagre</button>
+        <button ng-if="!currentIssue.id" type="submit" class="btn btn-primary" ng-click="addMeasurement(currentIssue)" ng-disabled="measurementForm.$invalid">Legg til</button>
+        <button ng-if="currentIssue.id" type="submit" class="btn btn-primary" ng-click="updateMeasurement(currentIssue)" ng-disabled="measurementForm.$invalid">Lagre</button>
       </div>
     </div>
   </ng-form>
