@@ -41,11 +41,17 @@ angular.module('gapoMeasurementApp')
     };
 
     $scope.getPhoto = function() {
-      Camera.getPicture().then(function(imageURI) {
-        console.log(imageURI);
-      }, function(err) {
-        console.err(err);
-      });
+      if($scope.currentIssue.key){
+        Camera.getPicture(null, $scope.currentIssue.key).then(function(imageURI) {
+        }, function(err) {
+          console.err(err);
+        });
+      }
+      else {
+        alert("Lagre måltakningen før du legger til bilde");
+      }
+
+      
     };
 
     $scope.addMeasurement = function(currentIssue) {

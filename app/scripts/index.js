@@ -3,6 +3,7 @@
 var CordovaInit = function() {
 
 	var onDeviceReady = function() {
+		console.log(navigator.camera);
 		receivedEvent('deviceready');
 	};
 
