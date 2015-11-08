@@ -59,6 +59,10 @@ angular.module('gapoMeasurementApp')
 
           $scope.currentIssue.id = response.data.id;
           $scope.currentIssue.key = response.data.key;
+          JiraRest.startMeasurement($scope.currentIssue.id).then(function(response){
+
+          }, function(response) {
+          });
         },
         function(data) {
           console.log(data);

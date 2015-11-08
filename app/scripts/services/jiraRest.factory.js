@@ -37,11 +37,19 @@ angular.module('gapoMeasurementApp')
       return $http.get(restUrl + '/issue/GM-1/editmeta');
     },
     getMeasurements: function() {
-      return $http.get(restUrl + '/search?jql=issuetype=Garasjeport+and+status=Open');
+      return $http.get(restUrl + '/search?jql=issuetype=Garasjeport+and+status=Open+or+status=\"In progress\"');
     },
     updateMeasurement: function(issue) {
       var updateIssue = UtilityService.trimIssue(issue);
       return $http.put(restUrl + '/issue/' + issue.id, updateIssue);
+    },
+    startMeasurement: function(key) {
+      var startIssue = {
+        "transition": {
+          "id": "4"
+        }
+      }
+      return $http.post(restUrl + '/issue/' + key + '/transitions?expand=transitions.fields', startIssue);
     },
     uploadImage: function(image, key) {
 
