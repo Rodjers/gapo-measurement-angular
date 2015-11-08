@@ -16,10 +16,10 @@ angular.module('gapoMeasurementApp')
       }
 
 
-      $scope.employees = [];
+      $rootScope.employees = [];
 
       JiraRest.getMetaMeasurement().then(function(response) {
-        $scope.employees = angular.copy(response.data.fields.customfield_10308.allowedValues);
+        $rootScope.employees = angular.copy(response.data.fields.customfield_10308.allowedValues);
         JiraRest.getDefaultMeasurement().then(function(response) {
           $scope.currentIssue = UtilityService.trimIssue(response.data);
           $scope.currentIssue.id = null;
