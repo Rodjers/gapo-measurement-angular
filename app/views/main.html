@@ -14,29 +14,39 @@
     <div class="form-group" ng-class="{ 'has-error' : measurementForm.formCustomer.$invalid && !measurementForm.formCustomer.$pristine }">
       <label>Navn</label>
       <input type="text" class="form-control" name="formCustomer" ng-model="currentIssue.fields.customfield_10301" required>
-      <p ng-show="measurementForm.formCustomer.$invalid && !measurementForm.formCustomer.$pristine" class="help-block">Fyll inn navn på kunde.</p>
+      <div ng-messages="measurementForm.formCustomer.$error" role="alert">
+        <div ng-message="required">Fyll inn navn på kunde</div>
+      </div>
     </div>
     <div class="form-group" ng-class="{ 'has-error' : measurementForm.formAdress.$invalid && !measurementForm.formAdress.$pristine }">
       <label>Adresse</label>
       <input type="text" class="form-control" name="formAdress" ng-model="currentIssue.fields.customfield_10302" required>
-      <p ng-show="measurementForm.formAdress.$invalid && !measurementForm.formAdress.$pristine" class="help-block">Fyll adresse.</p>
+      <div ng-messages="measurementForm.formAdress.$error" role="alert">
+        <div ng-message="required">Fyll inn adresse</div>
+      </div>
     </div>
     <div class="form-group" ng-class="{ 'has-error' : measurementForm.formZipcode.$invalid && !measurementForm.formZipcode.$pristine }">
       <label>Postnummer</label>
       <input type="number" class="form-control" name="formZipcode" ng-model="currentIssue.fields.customfield_10303" required ng-minlength="4" ng-maxlength="4">
-      <p ng-show="measurementForm.formZipcode.$error.minlength" class="help-block">Postnummer er for kort.</p>
-      <p ng-show="measurementForm.formZipcode.$error.maxlength" class="help-block">Postnummer er for langt.</p>
+      <div ng-messages="measurementForm.formZipcode.$error" role="alert">
+        <div ng-message="required">Fyll inn postnummer</div>
+        <div ng-message="minlength, maxlength">Postnummer må bestå av 4 siffer.</div>
+      </div>
     </div>
     <div class="form-group" ng-class="{ 'has-error' : measurementForm.formCity.$invalid && !measurementForm.formCity.$pristine }">
       <label>Poststed</label>
       <input type="text" class="form-control" name="formCity" ng-model="currentIssue.fields.customfield_10304" required>
-      <p ng-show="measurementForm.formCity.$invalid && !measurementForm.formCity.$pristine" class="help-block">Fyll inn poststed.</p>
+      <div ng-messages="measurementForm.formCity.$error" role="alert">
+        <div ng-message="required">Fyll inn poststed</div>
+      </div>
     </div>
     <div class="form-group" ng-class="{ 'has-error' : measurementForm.formPhonenumber.$invalid && !measurementForm.formPhonenumber.$pristine }">
       <label>Telefonnr.</label>
-      <input type="number" class="form-control" name="formPhonenumber" ng-model="currentIssue.fields.customfield_10305" required ng-minlength="8" ng-maxlength="8">
-      <p ng-show="measurementForm.formPhonenumber.$error.minlength" class="help-block">Telefonnummer er for kort.</p>
-      <p ng-show="measurementForm.formPhonenumber.$error.maxlength" class="help-block">Telefonnummer er for langt.</p>
+      <input type="number" class="form-control" name="formPhonenumber" ng-model="currentIssue.fields.customfield_10305" required minlength="8" maxlength="8">
+      <div ng-messages="measurementForm.formPhonenumber.$error" role="alert">
+        <div ng-message="required">Fyll inn telefonnummer</div>
+        <div ng-message="minlength, maxlength">Telefonnummer må bestå av 8 siffer.</div>
+      </div>
     </div>
     <div class="form-group">
       <label>Sammendrag</label>

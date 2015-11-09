@@ -3,7 +3,8 @@
 angular.module	('gapoMeasurementApp', [
   'ngRoute',
   'ui.bootstrap',
-  'base64'
+  'base64',
+  'ngMessages'
 ])
   .config(function ($routeProvider, $sceDelegateProvider) {
     $routeProvider
