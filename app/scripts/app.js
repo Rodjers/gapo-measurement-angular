@@ -6,7 +6,8 @@ angular.module	('gapoMeasurementApp', [
   'base64',
   'ngMessages',
   'ngMaterial',
-  'ngMdIcons'
+  'ngMdIcons',
+  'md.data.table'
 ])
   .config(function ($routeProvider, $mdThemingProvider) {
     $routeProvider
