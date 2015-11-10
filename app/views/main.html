@@ -1,92 +1,84 @@
-<div class="container">
-  <ng-form name="measurementForm">
-    <div class="row">
-    <div class="col-lg-12">
-          <h1 class="page-header">Mål</h1>
+<md-content layout-padding>
+  <form name="measurementForm">
+    <div layout="row">
+      <h2>Mål</h2>
+    </div>
+    <div layout="row" layout-sm="column">
+      <div flex layout="column">
+        <md-input-container>
+          <label>Navn</label>
+          <input type="text" name="formCustomer" ng-model="currentIssue.fields.customfield_10301" required>
+          <div ng-messages="measurementForm.formCustomer.$error" role="alert">
+            <div ng-message="required">Fyll inn navn på kunde</div>
+          </div>
+        </md-input-container>
+        <md-input-container>
+          <label>Adresse</label>
+          <input type="text" name="formAdress" ng-model="currentIssue.fields.customfield_10302" required>
+          <div ng-messages="measurementForm.formAdress.$error" role="alert">
+            <div ng-message="required">Fyll inn adresse</div>
+          </div>
+        </md-input-container>
+        <md-input-container>
+          <label>Postnummer</label>
+          <input type="number" name="formZipcode" ng-model="currentIssue.fields.customfield_10303" required ng-minlength="4" ng-maxlength="4">
+          <div ng-messages="measurementForm.formZipcode.$error" role="alert">
+            <div ng-message="required">Fyll inn postnummer</div>
+            <div ng-message="minlength, maxlength">Postnummer må bestå av 4 siffer.</div>
+          </div>
+        </md-input-container>
+        <md-input-container>
+          <label>Poststed</label>
+          <input type="text" name="formCity" ng-model="currentIssue.fields.customfield_10304" required>
+          <div ng-messages="measurementForm.formCity.$error" role="alert">
+            <div ng-message="required">Fyll inn poststed</div>
+          </div>
+        </md-input-container>
+        <md-input-container>
+          <label>Telefonnr.</label>
+          <input type="number" name="formPhonenumber" ng-model="currentIssue.fields.customfield_10305" required>
+          <div ng-messages="measurementForm.formPhonenumber.$error" role="alert">
+            <div ng-message="required">Fyll inn telefonnummer</div>
+          </div>
+        </md-input-container>
+        <md-input-container>
+          <label>Sammendrag</label>
+          <input type="text" name="formDescription" ng-model="currentIssue.fields.summary">
+        </md-input-container>
+      </div>
+      <div flex layout="column">
+        <md-input-container>
+          <label>Høyde</label>
+          <input type="number" name="formHeight" ng-model="currentIssue.fields.customfield_10011">
+        </md-input-container>
+        <md-input-container>
+          <label>Bredde</label>
+          <input type="number" name="formWidth" ng-model="currentIssue.fields.customfield_10013">
+        </md-input-container>
+        <md-input-container>
+          <label>Dybde</label>
+          <input type="number" name="formDepth" ng-model="currentIssue.fields.customfield_10306">
+        </md-input-container>
+        <md-input-container>
+          <label>Overhøyde</label>
+          <input type="number" name="formOverHeight" ng-model="currentIssue.fields.customfield_10300">
+        </md-input-container>
+        <md-input-container>
+          <label>Sideklaring høyre</label>
+          <input type="number" name="formClearingRight" ng-model="currentIssue.fields.customfield_10015">
+        </md-input-container>
+        <md-input-container>
+          <label>Sideklaring venstre</label>
+          <input type="number" name="formClearingLeft" ng-model="currentIssue.fields.customfield_10014">
+        </md-input-container>
       </div>
     </div>
-    <div class="row">
-      <div class="col-lg-6">
-      <div class="form-group">
-      <label>Ansatt</label>
-      <select ng-options="employee.id as employee.value for employee in employees" class="form-control" name="formEmployee" ng-model="currentIssue.fields.customfield_10308.id"></select>
+    <div layout="row">
+      <md-button class="md-raised" ng-click="init()">Reset</md-button>
+      <md-button class="md-raised" ng-click="getPhoto()" ng-disabled="!currentIssue.id">Ta bilde</md-button>
+      <md-button ng-if="!currentIssue.id" type="submit" class="md-raised" ng-click="addMeasurement(currentIssue)" ng-disabled="measurementForm.$invalid">Legg til</md-button>
+      <md-button ng-if="currentIssue.id" type="submit" class="md-raised" ng-click="updateMeasurement(currentIssue)" ng-disabled="measurementForm.$invalid">Lagre</md-button>
     </div>
-    <div class="form-group" ng-class="{ 'has-error' : measurementForm.formCustomer.$invalid && !measurementForm.formCustomer.$pristine }">
-      <label>Navn</label>
-      <input type="text" class="form-control" name="formCustomer" ng-model="currentIssue.fields.customfield_10301" required>
-      <div ng-messages="measurementForm.formCustomer.$error" role="alert">
-        <div ng-message="required">Fyll inn navn på kunde</div>
-      </div>
     </div>
-    <div class="form-group" ng-class="{ 'has-error' : measurementForm.formAdress.$invalid && !measurementForm.formAdress.$pristine }">
-      <label>Adresse</label>
-      <input type="text" class="form-control" name="formAdress" ng-model="currentIssue.fields.customfield_10302" required>
-      <div ng-messages="measurementForm.formAdress.$error" role="alert">
-        <div ng-message="required">Fyll inn adresse</div>
-      </div>
-    </div>
-    <div class="form-group" ng-class="{ 'has-error' : measurementForm.formZipcode.$invalid && !measurementForm.formZipcode.$pristine }">
-      <label>Postnummer</label>
-      <input type="number" class="form-control" name="formZipcode" ng-model="currentIssue.fields.customfield_10303" required ng-minlength="4" ng-maxlength="4">
-      <div ng-messages="measurementForm.formZipcode.$error" role="alert">
-        <div ng-message="required">Fyll inn postnummer</div>
-        <div ng-message="minlength, maxlength">Postnummer må bestå av 4 siffer.</div>
-      </div>
-    </div>
-    <div class="form-group" ng-class="{ 'has-error' : measurementForm.formCity.$invalid && !measurementForm.formCity.$pristine }">
-      <label>Poststed</label>
-      <input type="text" class="form-control" name="formCity" ng-model="currentIssue.fields.customfield_10304" required>
-      <div ng-messages="measurementForm.formCity.$error" role="alert">
-        <div ng-message="required">Fyll inn poststed</div>
-      </div>
-    </div>
-    <div class="form-group" ng-class="{ 'has-error' : measurementForm.formPhonenumber.$invalid && !measurementForm.formPhonenumber.$pristine }">
-      <label>Telefonnr.</label>
-      <input type="number" class="form-control" name="formPhonenumber" ng-model="currentIssue.fields.customfield_10305" required minlength="8" maxlength="8">
-      <div ng-messages="measurementForm.formPhonenumber.$error" role="alert">
-        <div ng-message="required">Fyll inn telefonnummer</div>
-        <div ng-message="minlength, maxlength">Telefonnummer må bestå av 8 siffer.</div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Sammendrag</label>
-      <input type="text" class="form-control" name="formDescription" ng-model="currentIssue.fields.summary">
-    </div>
-      </div>
-      <div class="col-lg-6">
-    <div class="form-group">
-      <label>Høyde</label>
-      <input type="number" class="form-control" name="formHeight" ng-model="currentIssue.fields.customfield_10011">
-    </div>
-    <div class="form-group">
-      <label>Bredde</label>
-      <input type="number" class="form-control" name="formWidth" ng-model="currentIssue.fields.customfield_10013">
-    </div>
-    <div class="form-group">
-      <label>Dybde</label>
-      <input type="number" class="form-control" name="formDepth" ng-model="currentIssue.fields.customfield_10306">
-    </div>
-    <div class="form-group">
-      <label>Overhøyde</label>
-      <input type="number" class="form-control" name="formOverHeight" ng-model="currentIssue.fields.customfield_10300">
-    </div>
-    <div class="form-group">
-      <label>Sideklaring høyre</label>
-      <input type="number" class="form-control" name="formClearingRight" ng-model="currentIssue.fields.customfield_10015">
-    </div>
-    <div class="form-group">
-      <label>Sideklaring venstre</label>
-      <input type="number" class="form-control" name="formClearingLeft" ng-model="currentIssue.fields.customfield_10014">
-    </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <button class="btn btn-default" ng-click="init()">Reset</button>
-        <button class="btn btn-default" ng-click="getPhoto()">Ta bilde</button>
-        <button ng-if="!currentIssue.id" type="submit" class="btn btn-primary" ng-click="addMeasurement(currentIssue)" ng-disabled="measurementForm.$invalid">Legg til</button>
-        <button ng-if="currentIssue.id" type="submit" class="btn btn-primary" ng-click="updateMeasurement(currentIssue)" ng-disabled="measurementForm.$invalid">Lagre</button>
-      </div>
-    </div>
-  </ng-form>
-</div>
+  </form>
+</md-content>
