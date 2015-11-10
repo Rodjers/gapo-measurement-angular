@@ -5,31 +5,31 @@ angular.module('gapoMeasurementApp')
 
     if ($rootScope.rootMeasurement != undefined) {
       $scope.currentIssue = angular.copy($rootScope.rootMeasurement);
+      setEmployee(issue)
     }
     else if ($scope.currentIssue == undefined) {
       init();
     }
 
+    function setEmployee(issue) {
+      issue.fields.customfield_10308.id = localStorage.getItem("employeeId");
+    }
+
     function init() {
+      var employeeId = localStorage.getItem("employeeId");
       $scope.currentIssue = {
-        fields: {}
+        fields: {
+          customfield_10308: {
+            id: employeeId
+          },
+          project: {
+            id: "10100"
+          },
+          issuetype: {
+            id: "10200"
+          }
+        }
       }
-
-
-      $rootScope.employees = [];
-
-      JiraRest.getMetaMeasurement().then(function(response) {
-        $rootScope.employees = angular.copy(response.data.fields.customfield_10308.allowedValues);
-        JiraRest.getDefaultMeasurement().then(function(response) {
-          $scope.currentIssue = UtilityService.trimIssue(response.data);
-          $scope.currentIssue.id = null;
-          $scope.currentIssue.key = null;
-        }, function(response) {
-          //Error
-        });
-      }, function(response) {
-        console.log("Could not get default measurement");
-      });
     };
 
     $scope.init = function() {

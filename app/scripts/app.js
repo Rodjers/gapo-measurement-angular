@@ -19,6 +19,10 @@ angular.module	('gapoMeasurementApp', [
         templateUrl: 'views/list.html',
         controller: 'ListCtrl'
       })
+      .when('/settings', {
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
