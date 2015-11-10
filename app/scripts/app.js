@@ -3,9 +3,13 @@
 angular.module	('gapoMeasurementApp', [
   'ngRoute',
   'ui.bootstrap',
-  'base64'
+  'base64',
+  'ngMessages',
+  'ngMaterial',
+  'ngMdIcons',
+  'md.data.table'
 ])
-  .config(function ($routeProvider, $sceDelegateProvider) {
+  .config(function ($routeProvider, $mdThemingProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -18,4 +22,6 @@ angular.module	('gapoMeasurementApp', [
       .otherwise({
         redirectTo: '/'
       });
+    $mdThemingProvider.theme('default');
+
   });
