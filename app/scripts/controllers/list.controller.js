@@ -5,6 +5,27 @@ angular.module('gapoMeasurementApp')
 
     $scope.measurements = [];
 
+    $scope.searchInProgress = {
+      fields: {
+        customfield_10308: {
+          id: localStorage.getItem("employeeId")
+        },
+        status: {
+          name: "Måler"
+        }
+      }
+    };
+    $scope.searchOpen = {
+      fields: {
+        customfield_10308: {
+          id: localStorage.getItem("employeeId")
+        },
+        status: {
+          name: "Open"
+        }
+      }
+    };
+
     JiraRest.getMeasurements().then(function(response) {
       $scope.measurements = angular.copy(response.data.issues);
     }, function(response) {

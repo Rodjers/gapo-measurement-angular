@@ -1,5 +1,5 @@
 <md-data-table-toolbar>
-  <h2 class="md-title">Liste</h2>
+  <h2 class="md-title">Ønsket måltaking</h2>
 </md-data-table-toolbar>
 <md-data-table-container>
   <table md-data-table>
@@ -15,7 +15,36 @@
       </tr>   
     </thead>
     <tbody>
-      <tr ng-click="chooseMeasurement($index)" ng-repeat="measurement in measurements | orderBy : 'fields.status.name': true">
+      <tr ng-click="chooseMeasurement($index)" ng-repeat="measurement in measurements | filter:searchOpen:strict">
+        <td ng-bind="$index + 1"></td>
+        <td ng-bind="measurement.fields.customfield_10301"></td>
+        <td ng-bind="measurement.fields.customfield_10302"></td>
+        <td ng-bind="measurement.fields.customfield_10303"></td>
+        <td ng-bind="measurement.fields.customfield_10304"></td>
+        <td ng-bind="measurement.fields.customfield_10305"></td>
+        <td ng-bind="measurement.fields.status.name"></td>
+      </tr>  
+    </tbody>
+  </table>
+</md-data-table-container>
+<md-data-table-toolbar>
+  <h2 class="md-title">Måler</h2>
+</md-data-table-toolbar>
+<md-data-table-container>
+  <table md-data-table>
+    <thead> 
+      <tr>
+        <th name="#"></th>
+        <th name="Kundenavn"></th>
+        <th name="Adresse"></th>
+        <th name="Postnummer"></th>
+        <th name="Poststed"></th>
+        <th name="Telefonnr."></th>
+        <th name="Status"></th> 
+      </tr>   
+    </thead>
+    <tbody>
+      <tr ng-click="chooseMeasurement($index)" ng-repeat="measurement in measurements | filter:searchInProgress:strict">
         <td ng-bind="$index + 1"></td>
         <td ng-bind="measurement.fields.customfield_10301"></td>
         <td ng-bind="measurement.fields.customfield_10302"></td>
