@@ -78,7 +78,7 @@ angular.module('gapoMeasurementApp')
       $mdToast.show(
         $mdToast.simple()
         .content(message)
-        .position("top left")
+        .position("bottom right")
         .hideDelay(3000)
       );
     };
