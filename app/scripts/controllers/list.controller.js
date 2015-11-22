@@ -3,6 +3,10 @@
 angular.module('gapoMeasurementApp')
   .controller('ListCtrl', function($scope, $http, JiraRest, $location, $rootScope) {
 
+    $scope.filter = {
+      fetchingList: true
+    };
+
     $scope.measurements = [];
 
     $scope.searchInProgress = {
@@ -27,8 +31,10 @@ angular.module('gapoMeasurementApp')
     };
 
     JiraRest.getMeasurements().then(function(response) {
+      $scope.filter.fetchingList = false;
       $scope.measurements = angular.copy(response.data.issues);
     }, function(response) {
+      $scope.filter.fetchingList = false;
 
     });
 
