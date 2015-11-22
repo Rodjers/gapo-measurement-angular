@@ -6,6 +6,10 @@
     <div layout="row" layout-sm="column">
       <div flex layout="column">
         <md-input-container>
+          <label>Tittel</label>
+          <input type="text" name="formDescription" ng-model="currentIssue.fields.summary">
+        </md-input-container>
+        <md-input-container>
           <label>Navn</label>
           <input type="text" name="formCustomer" ng-model="currentIssue.fields.customfield_10301" required>
           <div ng-messages="measurementForm.formCustomer.$error" role="alert">
@@ -43,8 +47,8 @@
           </div>
         </md-input-container>
         <md-input-container>
-          <label>Sammendrag</label>
-          <input type="text" name="formDescription" ng-model="currentIssue.fields.summary">
+          <label>Beskrivelse</label>
+          <textarea name="formDescription" ng-model="currentIssue.fields.description"></textarea>
         </md-input-container>
       </div>
       <div flex layout="column">
@@ -75,8 +79,10 @@
       </div>
     </div>
     <div layout="row">
+      <md-button ng-if="currentIssue.id" ng-click="chooseSource($event)" ng-class="md-raised">Legg til bilde</md-button>
+    </div>
+    <div layout="row">
       <md-button class="md-raised" ng-click="init()">Reset</md-button>
-      <md-button class="md-raised" ng-click="getPhoto()" ng-disabled="!currentIssue.id">Ta bilde</md-button>
       <md-button ng-if="!currentIssue.id" type="submit" class="md-raised" ng-click="addMeasurement(currentIssue)" ng-disabled="measurementForm.$invalid">Legg til</md-button>
       <md-button ng-if="currentIssue.id" type="submit" class="md-raised" ng-click="updateMeasurement(currentIssue)" ng-disabled="measurementForm.$invalid">Lagre</md-button>
     </div>

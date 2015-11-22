@@ -11,10 +11,7 @@ angular.module('gapoMeasurementApp').factory('Camera', ['$q', 'JiraRest', functi
         q.resolve(result);
       }, function(err) {
         q.reject(err);
-      }, {
-        encodingType: Camera.EncodingType.PNG,
-        destinationType: Camera.DestinationType.DATA_URL
-      });
+      }, options);
 
       return q.promise;
     }

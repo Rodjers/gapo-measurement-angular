@@ -2,7 +2,6 @@
 
 angular.module	('gapoMeasurementApp', [
   'ngRoute',
-  'ui.bootstrap',
   'base64',
   'ngMessages',
   'ngMaterial',

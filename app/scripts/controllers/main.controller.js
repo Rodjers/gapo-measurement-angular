@@ -1,13 +1,12 @@
 'use strict';
 
 angular.module('gapoMeasurementApp')
-  .controller('MainCtrl', function($scope, $http, $base64, Camera, JiraRest, $rootScope, UtilityService) {
+  .controller('MainCtrl', function($scope, $mdDialog, $http, $base64, Camera, JiraRest, $rootScope, UtilityService) {
 
     if ($rootScope.rootMeasurement != undefined) {
       $scope.currentIssue = angular.copy($rootScope.rootMeasurement);
-      setEmployee(issue)
-    }
-    else if ($scope.currentIssue == undefined) {
+      setEmployee($scope.currentIssue)
+    } else if ($scope.currentIssue == undefined) {
       init();
     }
 
@@ -34,24 +33,37 @@ angular.module('gapoMeasurementApp')
 
     $scope.init = function() {
       init();
-      }
+    }
 
     $scope.login = function(username, password) {
       JiraRest.login(username, password);
     };
 
-    $scope.getPhoto = function() {
-      if($scope.currentIssue.key){
-        Camera.getPicture(null, $scope.currentIssue.key).then(function(imageURI) {
-        }, function(err) {
-          console.err(err);
-        });
-      }
-      else {
-        alert("Lagre måltakningen før du legger til bilde");
-      }
-
-      
+    $scope.chooseSource = function($event) {
+      $mdDialog.show({
+        clickOutsideToClose: true,
+        scope: $scope,
+        preserveScope: true,
+        parent: angular.element(document.body),
+        targetEvent: $event,
+        templateUrl: 'views/chooseSource.html',
+        controller: ['$scope', '$mdDialog', 'Camera', function ChooseSourceController($scope, $mdDialog, Camera) {
+          $scope.getPhoto = function(source) {
+           if ($scope.currentIssue.key) {
+              Camera.getPicture({
+                encodingType: 1,
+                destinationType: 0,
+                sourceType: source
+              }, $scope.currentIssue.key).then(function(imageURI) {$mdDialog.hide();}, function(err) {
+                console.err(err);
+                $mdDialog.hide();
+              });
+            } else {
+              alert("Lagre måltakningen før du legger til bilde");
+            }
+          };
+        }]
+      });
     };
 
     $scope.addMeasurement = function(currentIssue) {
@@ -59,10 +71,9 @@ angular.module('gapoMeasurementApp')
 
           $scope.currentIssue.id = response.data.id;
           $scope.currentIssue.key = response.data.key;
-          JiraRest.startMeasurement($scope.currentIssue.id).then(function(response){
+          JiraRest.startMeasurement($scope.currentIssue.id).then(function(response) {
 
-          }, function(response) {
-          });
+          }, function(response) {});
         },
         function(data) {
           console.log(data);
@@ -72,7 +83,7 @@ angular.module('gapoMeasurementApp')
     $scope.updateMeasurement = function(issue) {
       JiraRest.updateMeasurement(issue).then(function(response) {
         console.log(response);
-      }, function(response){
+      }, function(response) {
         console.log(response);
       });
     }
