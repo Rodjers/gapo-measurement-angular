@@ -1,3 +1,4 @@
+<md-progress-linear ng-if="filter.savingMeasurement"  md-mode="indeterminate"></md-progress-linear>
 <md-content layout-padding>
   <form name="measurementForm">
     <div layout="row">
@@ -79,7 +80,7 @@
       </div>
     </div>
     <div layout="row">
-      <md-button ng-if="currentIssue.id" ng-click="chooseSource($event)" ng-class="md-raised">Legg til bilde</md-button>
+      <md-button ng-if="currentIssue.id" ng-click="chooseSource($event)" class="md-raised">Legg til bilde</md-button>
     </div>
     <div layout="row">
       <md-button class="md-raised" ng-click="init()">Reset</md-button>
