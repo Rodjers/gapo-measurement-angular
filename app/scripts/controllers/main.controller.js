@@ -60,11 +60,11 @@ angular.module('gapoMeasurementApp')
                 sourceType: source
               }, $scope.currentIssue.key).then(function(imageURI) {
                 $mdDialog.hide();
-                $scope.showToast("Bilde lagt til");
+                $scope.showCustomToast("Bilde lagt til");
               }, function(err) {
                 console.err(err);
                 $mdDialog.hide();
-                $scope.showToast("Noe gikk galt under lagring av bilde");
+                $scope.showCustomToast("Noe gikk galt under lagring av bilde");
               });
             } else {
               alert("Lagre måltakningen før du legger til bilde");
@@ -72,16 +72,6 @@ angular.module('gapoMeasurementApp')
           };
         }]
       });
-    };
-
-    $scope.showToast = function(message) {
-      $mdToast.show(
-        $mdToast.simple()
-        .content(message)
-        .parent($document[0].querySelector('#saveButton'))
-        .position("bottom right")
-        .hideDelay(3000)
-      );
     };
 
     $scope.showCustomToast = function(message) {
@@ -104,15 +94,15 @@ angular.module('gapoMeasurementApp')
           $scope.currentIssue.key = response.data.key;
           JiraRest.startMeasurement($scope.currentIssue.id).then(function(response) {
             $scope.filter.savingMeasurement = false;
-            $scope.showToast("Måltakning lagret");
+            $scope.showCustomToast("Måltakning lagret");
           }, function(error) {
           $scope.filter.savingMeasurement = false;
-          $scope.showToast("Noe gikk galt under lagring av mål");            
+          $scope.showCustomToast("Noe gikk galt under lagring av mål");            
           });
         },
         function(error) {
           $scope.filter.savingMeasurement = false;
-          $scope.showToast("Noe gikk galt under lagring av mål");
+          $scope.showCustomToast("Noe gikk galt under lagring av mål");
           console.log(error);
         });
     };
@@ -123,21 +113,21 @@ angular.module('gapoMeasurementApp')
         if(issue.fields.status.name == "Open"){
           JiraRest.startMeasurement(issue.id).then(function(response) {
             $scope.filter.savingMeasurement = false;
-            $scope.showToast("Måltakning lagret");
+            $scope.showCustomToast("Måltakning lagret");
           }, function(error) {
             console.log(error);
             $scope.filter.savingMeasurement = false;
-            $scope.showToast("Noe gikk galt under lagring av mål"); 
+            $scope.showCustomToast("Noe gikk galt under lagring av mål"); 
           });
         }
         else {
           $scope.filter.savingMeasurement = false;
-          $scope.showToast("Måltakning lagret");          
+          $scope.showCustomToast("Måltakning lagret");          
         }
       }, function(error) {
         console.log(error);
         $scope.filter.savingMeasurement = false;
-        $scope.showToast("Noe gikk galt under lagring av mål");
+        $scope.showCustomToast("Noe gikk galt under lagring av mål");
       })
     };
   });

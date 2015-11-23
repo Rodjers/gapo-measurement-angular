@@ -25,6 +25,9 @@ angular.module	('gapoMeasurementApp', [
       .otherwise({
         redirectTo: '/'
       });
-    $mdThemingProvider.theme('default');
+    $mdThemingProvider.theme('default')
+    .primaryPalette('red', {
+      'default': '700'
+    });
 
   });
