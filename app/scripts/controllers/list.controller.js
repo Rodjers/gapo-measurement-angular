@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gapoMeasurementApp')
-  .controller('ListCtrl', function($scope, $http, JiraRest, $location, $rootScope) {
+  .controller('ListCtrl', function($scope, $http, JiraRest, $location, $rootScope, $filter) {
 
     $scope.filter = {
       fetchingList: true
@@ -32,14 +32,20 @@ angular.module('gapoMeasurementApp')
 
     JiraRest.getMeasurements().then(function(response) {
       $scope.filter.fetchingList = false;
-      $scope.measurements = angular.copy(response.data.issues);
+      $scope.futureMeasurements = angular.copy($filter('filter')(response.data.issues, $scope.searchOpen));
+      $scope.currentMeasurements = angular.copy($filter('filter')(response.data.issues, $scope.searchInProgress));
     }, function(response) {
       $scope.filter.fetchingList = false;
 
     });
 
-    $scope.chooseMeasurement = function(index){
-    	$rootScope.rootMeasurement = angular.copy($scope.measurements[index]);
+    $scope.chooseFutureMeasurement = function(index){
+    	$rootScope.rootMeasurement = angular.copy($scope.futureMeasurements[index]);
     	$location.path('/');
+    };
+
+    $scope.chooseCurrentMeasurement = function(index){
+      $rootScope.rootMeasurement = angular.copy($scope.currentMeasurements[index]);
+      $location.path('/');
     }
   });

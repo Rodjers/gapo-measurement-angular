@@ -103,26 +103,39 @@ angular.module('gapoMeasurementApp')
           $scope.currentIssue.id = response.data.id;
           $scope.currentIssue.key = response.data.key;
           JiraRest.startMeasurement($scope.currentIssue.id).then(function(response) {
-
-          }, function(response) {
             $scope.filter.savingMeasurement = false;
             $scope.showToast("Måltakning lagret");
+          }, function(error) {
+          $scope.filter.savingMeasurement = false;
+          $scope.showToast("Noe gikk galt under lagring av mål");            
           });
         },
-        function(data) {
+        function(error) {
           $scope.filter.savingMeasurement = false;
           $scope.showToast("Noe gikk galt under lagring av mål");
-          console.log(data);
+          console.log(error);
         });
     };
 
     $scope.updateMeasurement = function(issue) {
       $scope.filter.savingMeasurement = true;
       JiraRest.updateMeasurement(issue).then(function(response) {
-        $scope.filter.savingMeasurement = false;
-        $scope.showCustomToast("Måltakning lagret");
-      }, function(response) {
-        console.log(response);
+        if(issue.fields.status.name == "Open"){
+          JiraRest.startMeasurement(issue.id).then(function(response) {
+            $scope.filter.savingMeasurement = false;
+            $scope.showToast("Måltakning lagret");
+          }, function(error) {
+            console.log(error);
+            $scope.filter.savingMeasurement = false;
+            $scope.showToast("Noe gikk galt under lagring av mål"); 
+          });
+        }
+        else {
+          $scope.filter.savingMeasurement = false;
+          $scope.showToast("Måltakning lagret");          
+        }
+      }, function(error) {
+        console.log(error);
         $scope.filter.savingMeasurement = false;
         $scope.showToast("Noe gikk galt under lagring av mål");
       })

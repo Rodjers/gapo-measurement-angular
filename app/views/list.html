@@ -16,7 +16,7 @@
       </tr>   
     </thead>
     <tbody>
-      <tr ng-click="chooseMeasurement($index)" ng-repeat="measurement in measurements | filter:searchOpen:strict">
+      <tr ng-click="chooseFutureMeasurement($index)" ng-repeat="measurement in futureMeasurements">
         <td ng-bind="$index + 1"></td>
         <td ng-bind="measurement.fields.customfield_10301"></td>
         <td ng-bind="measurement.fields.customfield_10302"></td>
@@ -45,7 +45,7 @@
       </tr>   
     </thead>
     <tbody>
-      <tr ng-click="chooseMeasurement($index)" ng-repeat="measurement in measurements | filter:searchInProgress:strict">
+      <tr ng-click="chooseCurrentMeasurement($index)" ng-repeat="measurement in currentMeasurements">
         <td ng-bind="$index + 1"></td>
         <td ng-bind="measurement.fields.customfield_10301"></td>
         <td ng-bind="measurement.fields.customfield_10302"></td>
