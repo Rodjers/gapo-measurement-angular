@@ -54,28 +54,46 @@
       </div>
       <div flex layout="column">
         <md-input-container>
-          <label>Høyde</label>
-          <input type="number" name="formHeight" ng-model="currentIssue.fields.customfield_10011">
+          <label>Bredde</label>
+          <input type="number" name="formWidth" ng-model="currentIssue.fields.customfield_10013" required>
+          <div ng-messages="measurementForm.formHeight.$error" role="alert">
+            <div ng-message="required">Fyll inn bredde</div>
+          </div>
         </md-input-container>
         <md-input-container>
-          <label>Bredde</label>
-          <input type="number" name="formWidth" ng-model="currentIssue.fields.customfield_10013">
+          <label>Høyde</label>
+          <input type="number" name="formHeight" ng-model="currentIssue.fields.customfield_10011" required>
+          <div ng-messages="measurementForm.formPhonenumber.$error" role="alert">
+            <div ng-message="required">Fyll inn høyde</div>
+          </div>
         </md-input-container>
         <md-input-container>
           <label>Dybde</label>
-          <input type="number" name="formDepth" ng-model="currentIssue.fields.customfield_10306">
+          <input type="number" name="formDepth" ng-model="currentIssue.fields.customfield_10306" required>
+          <div ng-messages="measurementForm.formDepth.$error" role="alert">
+            <div ng-message="required">Fyll inn dybde</div>
+          </div>
         </md-input-container>
         <md-input-container>
           <label>Overhøyde</label>
-          <input type="number" name="formOverHeight" ng-model="currentIssue.fields.customfield_10300">
+          <input type="number" name="formOverHeight" ng-model="currentIssue.fields.customfield_10300" required>
+          <div ng-messages="measurementForm.formOverHeight.$error" role="alert">
+            <div ng-message="required">Fyll inn overhøyde</div>
+          </div>
         </md-input-container>
         <md-input-container>
           <label>Sideklaring høyre</label>
-          <input type="number" name="formClearingRight" ng-model="currentIssue.fields.customfield_10015">
+          <input type="number" name="formClearingRight" ng-model="currentIssue.fields.customfield_10015" required>
+          <div ng-messages="measurementForm.formClearingRight.$error" role="alert">
+            <div ng-message="required">Fyll inn sideklaring høyre</div>
+          </div>
         </md-input-container>
         <md-input-container>
           <label>Sideklaring venstre</label>
-          <input type="number" name="formClearingLeft" ng-model="currentIssue.fields.customfield_10014">
+          <input type="number" name="formClearingLeft" ng-model="currentIssue.fields.customfield_10014" required>
+          <div ng-messages="measurementForm.formClearingLeft.$error" role="alert">
+            <div ng-message="required">Fyll inn sideklaring venstre</div>
+          </div>
         </md-input-container>
       </div>
     </div>
