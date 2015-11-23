@@ -82,7 +82,7 @@ angular.module('gapoMeasurementApp')
       '</md-toast>',
       parent : $document[0].querySelector('#toastBase'),
       hideDelay: 2000,
-      position: "top right"
+      position: "bottom right"
     });
   };
 
