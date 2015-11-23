@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('gapoMeasurementApp')
-  .controller('MainCtrl', function($scope, $mdDialog, $http, $base64, Camera, JiraRest, $rootScope, UtilityService, $mdToast) {
+  .controller('MainCtrl', function($scope, $mdDialog, $http, $base64, Camera, JiraRest, $rootScope, UtilityService, $mdToast, $document) {
 
     if ($rootScope.rootMeasurement != undefined) {
       $scope.currentIssue = angular.copy($rootScope.rootMeasurement);
@@ -78,10 +78,23 @@ angular.module('gapoMeasurementApp')
       $mdToast.show(
         $mdToast.simple()
         .content(message)
+        .parent($document[0].querySelector('#saveButton'))
         .position("bottom right")
         .hideDelay(3000)
       );
     };
+
+    $scope.showCustomToast = function(message) {
+    $mdToast.show({
+      controller: 'ToastCtrl',
+      template: '<md-toast>' +
+      '<span flex>' + message + '</span>' +
+      '</md-toast>',
+      parent : $document[0].querySelector('#toastBase'),
+      hideDelay: 2000,
+      position: "top right"
+    });
+  };
 
     $scope.addMeasurement = function(currentIssue) {
 
@@ -107,7 +120,7 @@ angular.module('gapoMeasurementApp')
       $scope.filter.savingMeasurement = true;
       JiraRest.updateMeasurement(issue).then(function(response) {
         $scope.filter.savingMeasurement = false;
-        $scope.showToast("Måltakning lagret");
+        $scope.showCustomToast("Måltakning lagret");
       }, function(response) {
         console.log(response);
         $scope.filter.savingMeasurement = false;

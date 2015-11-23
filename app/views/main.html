@@ -79,7 +79,7 @@
         </md-input-container>
       </div>
     </div>
-    <div layout="row">
+    <div id="toastBase" layout="row">
       <md-button ng-if="currentIssue.id" ng-click="chooseSource($event)" class="md-raised">Legg til bilde</md-button>
     </div>
     <div layout="row">
@@ -90,4 +90,6 @@
     </div>
   </form>
 </md-content>
+
 <md-progress-linear ng-if="filter.savingMeasurement"  md-mode="indeterminate"></md-progress-linear>
+<div  style="display: inline-block;"></div>
