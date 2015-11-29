@@ -20,6 +20,30 @@ angular.module('gapoMeasurementApp')
       appIssue.fields.customfield_10305 = angular.copy(fullIssue.fields.customfield_10305);
       appIssue.fields.customfield_10306 = angular.copy(fullIssue.fields.customfield_10306);
       appIssue.fields.customfield_10308 = angular.copy(fullIssue.fields.customfield_10308);
+      if(fullIssue.fields.customfield_10401){
+        appIssue.fields.customfield_10401 = [{ "value": "Ja", "id": "10301"}];
+      }
+      else {
+        appIssue.fields.customfield_10401 = null;
+      }
+      if(fullIssue.fields.customfield_10403){
+        appIssue.fields.customfield_10403 = [{ "value": "Ja", "id": "10303"}];
+      }
+      else {
+        appIssue.fields.customfield_10403 = null;
+      }
+      if(fullIssue.fields.customfield_10404){
+        appIssue.fields.customfield_10404 = [{ "value": "Ja", "id": "10304"}];
+      }
+      else {
+        appIssue.fields.customfield_10404 = null;
+      }
+      if(fullIssue.fields.customfield_10406){
+        appIssue.fields.customfield_10406 = [{ "value": "Ja", "id": "10306"}];
+      }
+      else {
+        appIssue.fields.customfield_10406 = null;
+      }
       appIssue.fields.summary = angular.copy(fullIssue.fields.summary);
       appIssue.fields.project = angular.copy(fullIssue.fields.project);
       appIssue.fields.issuetype = angular.copy(fullIssue.fields.issuetype);

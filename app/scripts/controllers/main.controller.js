@@ -5,6 +5,30 @@ angular.module('gapoMeasurementApp')
 
     if ($rootScope.rootMeasurement != undefined) {
       $scope.currentIssue = angular.copy($rootScope.rootMeasurement);
+      if ($rootScope.rootMeasurement.fields.customfield_10401){
+        $scope.currentIssue.fields.customfield_10401 = true;
+      }
+      else {
+         $scope.currentIssue.fields.customfield_10401 = false;       
+      }
+      if ($rootScope.rootMeasurement.fields.customfield_10403){
+        $scope.currentIssue.fields.customfield_10403 = true;
+      }
+      else {
+         $scope.currentIssue.fields.customfield_10403 = false;       
+      }
+      if ($rootScope.rootMeasurement.fields.customfield_10404){
+        $scope.currentIssue.fields.customfield_10404 = true;
+      }
+      else {
+         $scope.currentIssue.fields.customfield_10404 = false;       
+      }
+      if ($rootScope.rootMeasurement.fields.customfield_10406){
+        $scope.currentIssue.fields.customfield_10406 = true;
+      }
+      else {
+         $scope.currentIssue.fields.customfield_10406 = false;       
+      }
       setEmployee($scope.currentIssue)
     } else if ($scope.currentIssue == undefined) {
       init();
@@ -41,6 +65,15 @@ angular.module('gapoMeasurementApp')
 
     $scope.login = function(username, password) {
       JiraRest.login(username, password);
+    };
+
+    $scope.switchValue = function(value) {
+      if (value) {
+        return "Ja";
+      }
+      else {
+        return "Nei";
+      }
     };
 
     $scope.chooseSource = function($event) {
