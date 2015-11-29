@@ -3,3 +3,6 @@ dist
 .tmp
 .sass-cache
 bower_components
+cordova/plugins
+cordova/platforms
+cordova/www
