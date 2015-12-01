@@ -116,6 +116,10 @@ angular.module('gapoMeasurementApp')
       }
     };
 
+    $scope.$on('$routeChangeStart', function(next, current) { 
+      $rootScope.rootMeasurement = angular.copy($scope.currentIssue); 
+    });
+
     $scope.chooseSource = function($event) {
       $mdDialog.show({
         clickOutsideToClose: true,
