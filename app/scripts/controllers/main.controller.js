@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('gapoMeasurementApp')
-  .controller('MainCtrl', function($scope, $mdDialog, $http, $base64, Camera, JiraRest, $rootScope, UtilityService, $mdToast, $document) {
+  .controller('MainCtrl', function($scope, $mdDialog, $http, $base64, Camera, JiraRest, $rootScope, UtilityService, $mdToast, $document, Geocoder) {
+
+    $scope.showMap = false;
 
     if ($rootScope.rootMeasurement != undefined) {
       $scope.currentIssue = angular.copy($rootScope.rootMeasurement);
@@ -34,6 +36,15 @@ angular.module('gapoMeasurementApp')
       init();
     };
 
+    $scope.searchAddress= function(address) {
+      Geocoder.latLngForAddress(address).then(function(data) {
+        console.log(data);
+        return data;
+      }, function(error){
+        console.log(error);
+      });
+    }
+
     $scope.filter = {
       savingMeasurement: false
     };
@@ -62,6 +73,35 @@ angular.module('gapoMeasurementApp')
     $scope.init = function() {
       init();
     };
+
+    $scope.map = { 
+      center: {
+        latitude: 59,
+        longitude: 11
+              },
+      zoom: 15,
+      control: {},
+      events: {
+      tilesloaded: function(map) {
+        console.log("Resize");
+        $scope.mapInstance = map;
+      },
+      }
+    };
+
+    $scope.showInMap = function(address) {
+      Geocoder.latLngForAddress(address).then(function(data) {
+        console.log(data);
+        $scope.showMap = true;
+      //  $scope.mapInstance.control.refresh({latitude: data.lat, longitude: data.lng});
+      $scope.map.center = {latitude: data.lat, longitude: data.lng};
+      $scope.map.markers = [{id: 1, latitude: data.lat, longitude: data.lng}];
+        return ;
+      }, function(error){
+        console.log(error);
+      });
+      return;
+    }
 
     $scope.login = function(username, password) {
       JiraRest.login(username, password);

@@ -1,4 +1,3 @@
-
 <md-content layout-padding>
   <form name="measurementForm">
     <div layout="row">
@@ -115,13 +114,19 @@
           Ferdig listet?: {{ switchValue(currentIssue.fields.customfield_10403) }}
         </md-switch>
     </div>
+    <div ng-if="showMap">
+      <ui-gmap-google-map center='map.center' zoom='map.zoom' events="map.events" control="map.control"><ui-gmap-markers models="map.markers" coords="'self'"></ui-gmap-marker></ui-gmap-google-map>
+      </div>
+    <div layout="row">
+    </div>
     <div id="toastBase" layout="row">
-      <md-button ng-if="currentIssue.id" ng-click="chooseSource($event)" class="md-raised">Legg til bilde</md-button>
+      <md-button type="button" ng-if="currentIssue.id" ng-click="chooseSource($event)" class="md-raised">Legg til bilde</md-button>
+      <md-button type="button" class="md-raised" ng-click="showMap = true; showInMap(currentIssue.fields.customfield_10302 + ' ' + currentIssue.fields.customfield_10303 + ' ' + currentIssue.fields.customfield_10304)"><span ng-if="!showMap">Vis i kart</span><span ng-if="showMap">Oppdater kart</span></md-button>
     </div>
     <div layout="row">
-      <md-button class="md-raised" ng-click="init()">Reset</md-button>
-      <md-button ng-if="!currentIssue.id" type="submit" class="md-raised" ng-click="addMeasurement(currentIssue)" ng-disabled="measurementForm.$invalid">Legg til</md-button>
-      <md-button ng-if="currentIssue.id" type="submit" class="md-raised" ng-click="updateMeasurement(currentIssue)" ng-disabled="measurementForm.$invalid">Lagre</md-button>
+      <md-button type="button" class="md-raised" ng-click="init()">Reset</md-button>
+      <md-button type="button" ng-if="!currentIssue.id" type="submit" class="md-raised" ng-click="addMeasurement(currentIssue)" ng-disabled="measurementForm.$invalid">Legg til</md-button>
+      <md-button type="button" ng-if="currentIssue.id" type="submit" class="md-raised" ng-click="updateMeasurement(currentIssue)" ng-disabled="measurementForm.$invalid">Lagre</md-button>
     </div>
     </div>
   </form>

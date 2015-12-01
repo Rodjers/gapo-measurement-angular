@@ -5,6 +5,7 @@ angular.module	('gapoMeasurementApp', [
   'base64',
   'ngMessages',
   'ngMaterial',
+  'uiGmapgoogle-maps',
   'ngMdIcons',
   'md.data.table'
 ])

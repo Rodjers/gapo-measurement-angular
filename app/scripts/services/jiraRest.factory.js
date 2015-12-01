@@ -27,7 +27,8 @@ angular.module('gapoMeasurementApp')
         return false;
       });
     },
-    addMeasurement: function(newIssue) {
+    addMeasurement: function(issue) {
+      var newIssue = UtilityService.trimIssue(issue);
       return $http.post(restUrl + '/issue', newIssue);
     },
     getDefaultMeasurement: function() {
