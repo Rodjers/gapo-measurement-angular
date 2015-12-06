@@ -4,6 +4,7 @@ angular.module('gapoMeasurementApp')
   .controller('MainCtrl', function($scope, $mdDialog, $http, $base64, Camera, JiraRest, $rootScope, UtilityService, $mdToast, $document, Geocoder) {
 
     $scope.showMap = false;
+    $rootScope.showRefresh = false;
 
     $scope.toggleMap = function() {
       $scope.showMap = !$scope.showMap

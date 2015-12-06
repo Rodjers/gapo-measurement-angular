@@ -35,7 +35,7 @@
   <md-toolbar class="md-primary">
     <div class="md-toolbar-tools">
       <h2>GAPO</h2>
-      <span flex></span>
+      <span flex></span><span ng-if="showRefresh" ng-click="reloadMeasurements()"><ng-md-icon flex icon="refresh" size="24" ></ng-md-icon></span>
       <md-menu>
         <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Meny">
           <ng-md-icon icon="menu"></ng-md-icon>

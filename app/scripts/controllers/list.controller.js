@@ -7,6 +7,8 @@ angular.module('gapoMeasurementApp')
       fetchingList: true
     };
 
+    $rootScope.showRefresh = true;
+
     $scope.measurements = [];
 
     $scope.searchInProgress = {
@@ -30,6 +32,9 @@ angular.module('gapoMeasurementApp')
       }
     };
 
+
+    $scope.loadMeasurements = function() {
+      $scope.filter.fetchingList = true;
     JiraRest.getMeasurements().then(function(response) {
       $scope.filter.fetchingList = false;
       $scope.futureMeasurements = angular.copy($filter('filter')(response.data.issues, $scope.searchOpen));
@@ -38,7 +43,13 @@ angular.module('gapoMeasurementApp')
       $scope.filter.fetchingList = false;
 
     });
+    }
 
+    $scope.loadMeasurements();
+
+    $rootScope.reloadMeasurements = function() {
+      $scope.loadMeasurements();
+    };
     $scope.chooseFutureMeasurement = function(index){
     	$rootScope.rootMeasurement = angular.copy($scope.futureMeasurements[index]);
     	$location.path('/');
