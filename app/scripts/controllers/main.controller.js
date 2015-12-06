@@ -5,6 +5,10 @@ angular.module('gapoMeasurementApp')
 
     $scope.showMap = false;
 
+    $scope.toggleMap = function() {
+      $scope.showMap = !$scope.showMap
+    }
+
     if ($rootScope.rootMeasurement != undefined) {
       $scope.currentIssue = angular.copy($rootScope.rootMeasurement);
       if ($rootScope.rootMeasurement.fields.customfield_10401){
