@@ -3,7 +3,7 @@
 angular.module('gapoMeasurementApp')
   .service('JiraRest', function($http, $base64, $rootScope, UtilityService) {
 
-  $http.defaults.headers.common.Authorization = 'Basic ' + $base64.encode('oddgeir' + ':' + 'lyse1234');
+  $http.defaults.headers.common.Authorization = 'Basic ' + $base64.encode('gapoapp' + ':' + '35dc4587ccb7ca37fff3366f6608be74');
 
   var restUrl = 'http://intra.gapo.no/rest/api/2';
 
@@ -42,7 +42,7 @@ angular.module('gapoMeasurementApp')
     },
     updateMeasurement: function(issue) {
       var updateIssue = UtilityService.trimIssue(issue);
-      return $http.put(restUrl + '/issue/' + issue.id, updateIssue);
+      return $http.put(restUrl + '/issue/' + issue.key, updateIssue);
     },
     startMeasurement: function(key) {
       var startIssue = {

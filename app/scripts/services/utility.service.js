@@ -47,6 +47,7 @@ angular.module('gapoMeasurementApp')
       appIssue.fields.summary = angular.copy(fullIssue.fields.summary);
       appIssue.fields.project = angular.copy(fullIssue.fields.project);
       appIssue.fields.issuetype = angular.copy(fullIssue.fields.issuetype);
+      appIssue.fields.description = angular.copy(fullIssue.fields.description);
       appIssue.id = angular.copy(fullIssue.id);
       appIssue.key = angular.copy(fullIssue.key);
 
